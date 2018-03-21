@@ -21,10 +21,29 @@ class GameDetails extends PureComponent {
 
   makeMove = (toRow, toCell) => {
     const {game, updateGame} = this.props
+//function to flip array so you can analize each row
+    function transposeArray(array, arrayLength){
+      var newArray = [];
+      for(var i = 0; i < array.length; i++){
+          newArray.push([]);
+      };
+
+      for(var i = 0; i < array.length; i++){
+          for(var j = 0; j < arrayLength; j++){
+              newArray[j].push(array[i][j]);
+          };
+      };
+
+      return newArray;
+    }
+//new constants to find lowest open spot
+    const flippedBoard = transposeArray(game.board, game.board.length)
+    const numSymbols = flippedBoard[toCell].filter(x => x !== null).length
+    const lowest = game.board.length-1-numSymbols
 
     const board = game.board.map(
       (row, rowIndex) => row.map((cell, cellIndex) => {
-        if (rowIndex === 6 && cellIndex === toCell)
+        if (rowIndex === lowest && cellIndex === toCell)
         return game.turn
         else return cell
       })
