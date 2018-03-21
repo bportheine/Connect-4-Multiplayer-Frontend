@@ -23,5 +23,7 @@
     "eject": "react-scripts eject"
   },
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "git@github.com:bportheine/Simon-Multiplayer-Frontend.git",
+  "author": "Brandon Portheine <bportheine@gmail.com>"
 }
