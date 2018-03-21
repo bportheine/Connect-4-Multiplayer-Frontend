@@ -24,7 +24,8 @@ class GameDetails extends PureComponent {
 
     const board = game.board.map(
       (row, rowIndex) => row.map((cell, cellIndex) => {
-        if (rowIndex === toRow && cellIndex === toCell) return game.turn
+        if (rowIndex === 6 && cellIndex === toCell)
+        return game.turn
         else return cell
       })
     )
@@ -65,9 +66,9 @@ class GameDetails extends PureComponent {
       <p>Status: {game.status}</p>
 
       {
-        game.status === 'started' && 
+        game.status === 'started' &&
         player && player.symbol === game.turn &&
-        <div>It's your turn!</div>
+        <div>It is your turn!</div>
       }
 
       {
