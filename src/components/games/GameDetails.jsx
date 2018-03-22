@@ -8,6 +8,8 @@ import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
 import './GameDetails.css'
 
+var classNames = require('classnames')
+
 class GameDetails extends PureComponent {
 
   componentWillMount() {
@@ -52,13 +54,18 @@ class GameDetails extends PureComponent {
   }
 
   renderCel = (rowIndex, cellIndex, symbol, hasTurn) => {
-    return (
-      <button
-        disabled={hasTurn}
-        onClick={() => this.makeMove(rowIndex, cellIndex)}
-        key={`${rowIndex}-${cellIndex}`}
-      >{symbol || '-'}</button>
-    )
+   const cssClass = classNames({
+     button: true,
+     xBtn: symbol === 'x',
+     oBtn: symbol === 'o'
+   })
+   return (
+     <button className={cssClass}
+       disabled={hasTurn}
+       onClick={() => this.makeMove(rowIndex, cellIndex)}
+       key={`${rowIndex}-${cellIndex}`}
+     >{symbol || '.'}</button>
+   )
   }
 
   renderRow = (cells, rowIndex) => {
@@ -97,8 +104,9 @@ class GameDetails extends PureComponent {
       }
 
       <hr />
-
-      {game.board.map(this.renderRow)}
+      <div class="board">
+        {game.board.map(this.renderRow)}
+      </div>
     </Paper>)
   }
 }
